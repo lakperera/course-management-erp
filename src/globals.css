@@ -1,0 +1,203 @@
+/* src/styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar */
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(156 163 175) transparent;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: rgb(156 163 175);
+    border-radius: 3px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(107 114 128);
+  }
+}
+
+/* Animation utilities */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .animate-slide-in-right {
+    animation: slideInRight 0.3s ease-out;
+  }
+  
+  .animate-slide-in-left {
+    animation: slideInLeft 0.3s ease-out;
+  }
+  
+  .animate-bounce-in {
+    animation: bounceIn 0.5s ease-out;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Custom focus styles */
+@layer base {
+  :focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+}
+
+/* Dark mode transitions */
+@layer base {
+  * {
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    color: black !important;
+    background: white !important;
+  }
+  
+  .dark\:bg-gray-800,
+  .dark\:bg-gray-700 {
+    background-color: white !important;
+  }
+  
+  .dark\:text-white,
+  .dark\:text-gray-200 {
+    color: black !important;
+  }
+}
+
+/* Loading spinner */
+@layer components {
+  .spinner {
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Custom table styles */
+@layer components {
+  .table-hover tbody tr:hover {
+    @apply bg-gray-50 dark:bg-gray-700 transition-colors duration-150;
+  }
+  
+  .table-striped tbody tr:nth-child(even) {
+    @apply bg-gray-50 dark:bg-gray-800;
+  }
+}
+
+/* Form styles */
+@layer components {
+  .form-input {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-indigo-500 dark:focus:border-indigo-500;
+  }
+  
+  .form-label {
+    @apply block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1;
+  }
+  
+  .form-error {
+    @apply text-red-600 dark:text-red-400 text-sm mt-1;
+  }
+}
+
+/* Button variants */
+@layer components {
+  .btn-primary {
+    @apply bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 text-white;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-600 hover:bg-gray-700 focus:ring-gray-500 text-white;
+  }
+  
+  .btn-success {
+    @apply bg-green-600 hover:bg-green-700 focus:ring-green-500 text-white;
+  }
+  
+  .btn-danger {
+    @apply bg-red-600 hover:bg-red-700 focus:ring-red-500 text-white;
+  }
+  
+  .btn-warning {
+    @apply bg-yellow-600 hover:bg-yellow-700 focus:ring-yellow-500 text-white;
+  }
+  
+  .btn-outline {
+    @apply border border-gray-300 bg-white hover:bg-gray-50 focus:ring-gray-500 text-gray-700 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600;
+  }
+}
